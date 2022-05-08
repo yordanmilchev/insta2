@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,42 +19,42 @@ Route::get('/', function () {
     return redirect('/auth/login');
 });
 
-Route::get('/portfolio','App\Http\Controllers\\MainController@portfolio')->name('portfolio');
-Route::get('/learningpage','App\Http\Controllers\\MainController@learningpage')->name('learningpage');
+Route::get('/portfolio',[MainController::class, 'portfolio'])->name('portfolio');
+Route::get('/learningpage',[MainController::class, 'learningpage'])->name('learningpage');
 
-Route::group(['prefix' => 'auth'], function (){
-    Route::post('check','App\Http\Controllers\\MainController@check')->name('auth.check');
-    Route::post('save','App\Http\Controllers\\MainController@save')->name('auth.save');
-    Route::get('logout','App\Http\Controllers\\MainController@logout')->name('auth.logout');
-    Route::get('delete_pic/{id}','App\Http\Controllers\\ImageController@delete_pic');
-    Route::get('user_id/{id}','App\Http\Controllers\\ImageController@user_id');
-    Route::get('search','App\Http\Controllers\\MainController@action')->name('action');
-    Route::get('follow/{id}','App\Http\Controllers\\MainController@follow');
-    Route::get('unfollow/{id}','App\Http\Controllers\\MainController@unfollow');
-    Route::get('followersrecords/{id}','App\Http\Controllers\\MainController@followersrecords');
-    Route::get('followingrecords/{id}','App\Http\Controllers\\MainController@followingrecords');
-    Route::get('showcomments/{id}','App\Http\Controllers\\ImageController@showcomments');
-    Route::get('addcoment/','App\Http\Controllers\\ImageController@addcomment');
+Route::prefix('auth')->group(function () {
+    Route::post('/check',[MainController::class, 'check'])->name('auth.check');
+    Route::post('/save',[MainController::class, 'save'])->name('auth.save');
+    Route::get('/logout',[MainController::class, 'logout'])->name('auth.logout');
+    Route::get('/delete_pic/{id}',[ImageController::class, 'delete_pic']);
+    Route::get('/user_id/{id}',[ImageController::class, 'user_id']);
+    Route::get('/search',[MainController::class, 'action'])->name('action');
+    Route::get('/follow/{id}',[MainController::class, 'follow']);
+    Route::get('/unfollow/{id}',[MainController::class, 'unfollow']);
+    Route::get('/followersrecords/{id}',[MainController::class, 'followersrecords']);
+    Route::get('/followingrecords/{id}',[MainController::class, 'followingrecords']);
+    Route::get('/showcomments/{id}',[ImageController::class, 'showcomments']);
+    Route::get('/addcoment/',[ImageController::class, 'addcomment']);
+    Route::get('/login',[MainController::class, 'login'])->middleware(['AuthCheck'])->name('auth.login');
+    Route::get('/register',[MainController::class, 'register'])->middleware(['AuthCheck'])->name('auth.register');
 });
 
 Route::group(['prefix' => 'admin'], function (){
-    Route::post('changepass','App\Http\Controllers\\MainController@changepasspost')->name('changepasspost');
-    Route::post('changename','App\Http\Controllers\\MainController@changenamepost')->name('changenamepost');
-    Route::post('addimage','App\Http\Controllers\\ImageController@imagesave')->name('image_save');
-    Route::post('addprofilepic','App\Http\Controllers\\ImageController@profile_pic_save')->name('profile_pic_save');
+    Route::post('changepass',[MainController::class, 'changepasspost'])->name('changepasspost');
+    Route::post('changename',[MainController::class, 'changenamepost'])->name('changenamepost');
+    Route::post('addimage',[ImageController::class, 'imagesave'])->name('image_save');
+    Route::post('addprofilepic',[ImageController::class, 'profile_pic_save'])->name('profile_pic_save');
 });
 
-Route::group(['middleware'=>['AuthCheck']], function()
-{
-    Route::get('/auth/login','App\Http\Controllers\\MainController@login')->name('auth.login');
-    Route::get('/auth/register','App\Http\Controllers\\MainController@register')->name('auth.register');
-    Route::get('/admin/profile/','App\Http\Controllers\\MainController@profile');
-    Route::get('/admin/profiles/{id}','App\Http\Controllers\\MainController@profiles');
-    Route::get('/admin/test','App\Http\Controllers\\MainController@test');
-    Route::get('/admin/settings','App\Http\Controllers\\MainController@settings');
-    Route::get('/admin/addimage','App\Http\Controllers\\MainController@addimage');
-    Route::get('/admin/news','App\Http\Controllers\\MainController@news');
-    Route::get('/auth/delete','App\Http\Controllers\\MainController@delete')->name('delete');
-    Route::get('/admin/changepass','App\Http\Controllers\\MainController@changepass')->name('changepass');
-    Route::get('/admin/changename','App\Http\Controllers\\MainController@changename')->name('changename');
+
+Route::middleware(['AuthCheck'])->group(function () {
+    Route::get('/admin/profile/',[MainController::class, 'profile']);
+    Route::get('/admin/profiles/{id}',[MainController::class, 'profiles']);
+    Route::get('/admin/test',[MainController::class, 'test']);
+    Route::get('/admin/settings',[MainController::class, 'settings']);
+    Route::get('/admin/addimage',[MainController::class, 'addimage']);
+    Route::get('/admin/news',[MainController::class, 'news']);
+    Route::get('/auth/delete',[MainController::class, 'delete'])->name('delete');
+    Route::get('/admin/changepass',[MainController::class, 'changepass'])->name('changepass');
+    Route::get('/admin/changename',[MainController::class, 'changename'])->name('changename');
 });
