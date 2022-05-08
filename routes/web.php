@@ -23,9 +23,6 @@ Route::get('/portfolio',[MainController::class, 'portfolio'])->name('portfolio')
 Route::get('/learningpage',[MainController::class, 'learningpage'])->name('learningpage');
 
 Route::prefix('auth')->group(function () {
-    Route::post('/check',[MainController::class, 'check'])->name('auth.check');
-    Route::post('/save',[MainController::class, 'save'])->name('auth.save');
-    Route::get('/logout',[MainController::class, 'logout'])->name('auth.logout');
     Route::get('/delete_pic/{id}',[ImageController::class, 'delete_pic']);
     Route::get('/user_id/{id}',[ImageController::class, 'user_id']);
     Route::get('/search',[MainController::class, 'action'])->name('action');
@@ -35,26 +32,31 @@ Route::prefix('auth')->group(function () {
     Route::get('/followingrecords/{id}',[MainController::class, 'followingrecords']);
     Route::get('/showcomments/{id}',[ImageController::class, 'showcomments']);
     Route::get('/addcoment/',[ImageController::class, 'addcomment']);
-    Route::get('/login',[MainController::class, 'login'])->middleware(['AuthCheck'])->name('auth.login');
-    Route::get('/register',[MainController::class, 'register'])->middleware(['AuthCheck'])->name('auth.register');
+    Route::get('/delete',[MainController::class, 'delete'])->name('delete');
 });
 
-Route::group(['prefix' => 'admin'], function (){
+Route::name('auth.')->prefix('auth')->group(function () {
+    Route::post('/check',[MainController::class, 'check'])->name('check');
+    Route::post('/save',[MainController::class, 'save'])->name('save');
+    Route::get('/logout',[MainController::class, 'logout'])->name('logout');
+    Route::get('/login',[MainController::class, 'login'])->middleware(['AuthCheck'])->name('login');
+    Route::get('/register',[MainController::class, 'register'])->middleware(['AuthCheck'])->name('register');
+});
+
+Route::prefix('admin')->group(function () {
     Route::post('changepass',[MainController::class, 'changepasspost'])->name('changepasspost');
     Route::post('changename',[MainController::class, 'changenamepost'])->name('changenamepost');
     Route::post('addimage',[ImageController::class, 'imagesave'])->name('image_save');
     Route::post('addprofilepic',[ImageController::class, 'profile_pic_save'])->name('profile_pic_save');
 });
 
-
-Route::middleware(['AuthCheck'])->group(function () {
-    Route::get('/admin/profile/',[MainController::class, 'profile']);
-    Route::get('/admin/profiles/{id}',[MainController::class, 'profiles']);
-    Route::get('/admin/test',[MainController::class, 'test']);
-    Route::get('/admin/settings',[MainController::class, 'settings']);
-    Route::get('/admin/addimage',[MainController::class, 'addimage']);
-    Route::get('/admin/news',[MainController::class, 'news']);
-    Route::get('/auth/delete',[MainController::class, 'delete'])->name('delete');
-    Route::get('/admin/changepass',[MainController::class, 'changepass'])->name('changepass');
-    Route::get('/admin/changename',[MainController::class, 'changename'])->name('changename');
+Route::middleware(['AuthCheck'])->prefix('admin')->group(function () {
+    Route::get('/profile/',[MainController::class, 'profile']);
+    Route::get('/profiles/{id}',[MainController::class, 'profiles']);
+    Route::get('/test',[MainController::class, 'test']);
+    Route::get('/settings',[MainController::class, 'settings']);
+    Route::get('/addimage',[MainController::class, 'addimage']);
+    Route::get('/news',[MainController::class, 'news']);
+    Route::get('/changepass',[MainController::class, 'changepass'])->name('changepass');
+    Route::get('/changename',[MainController::class, 'changename'])->name('changename');
 });
