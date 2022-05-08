@@ -50,7 +50,7 @@ Route::prefix('admin')->group(function () {
     Route::post('addprofilepic',[ImageController::class, 'profile_pic_save'])->name('profile_pic_save');
 });
 
-Route::middleware(['AuthCheck'])->prefix('admin')->group(function () {
+Route::prefix('admin')->middleware(['AuthCheck'])->group(function () {
     Route::get('/profile/',[MainController::class, 'profile']);
     Route::get('/profiles/{id}',[MainController::class, 'profiles']);
     Route::get('/test',[MainController::class, 'test']);

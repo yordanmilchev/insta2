@@ -266,8 +266,11 @@ class MainController extends Controller
 
     function changename()
     {
-        $data = ['LoggedUserInfo'=>Admin::where('id', session('LoggedUser'))->first()];
-        return view('admin.changename',$data);
+        $LoggedUserInfo = Admin::where('id', session('LoggedUser'))->first();
+
+        return view('admin.changename',[
+            'LoggedUserInfo' => $LoggedUserInfo
+        ]);
     }
 
     function changepass()
@@ -278,9 +281,7 @@ class MainController extends Controller
 
     function profile()
     {
-        $data = ['LoggedUserInfo'=>Admin::where('id', session('LoggedUser'))->with('images')
-            ->with('profile_pic')->with('follows')->first()];
-        return view('admin.profile',$data );
+        return view('admin.profile');
     }
 
     function profiles($id)
@@ -294,26 +295,28 @@ class MainController extends Controller
 
     function settings()
     {
-        $data = ['LoggedUserInfo'=>Admin::where('id', session('LoggedUser'))->first()];
-        return view('admin.settings' ,$data);
+        return view('admin.settings');
     }
 
     function addimage()
     {
-        $data = ['LoggedUserInfo'=>Admin::where('id', session('LoggedUser'))->first()];
-        return view('admin.addimage',$data);
+        return view('admin.addimage');
     }
 
     function news()
     {
-        $data = ['LoggedUserInfo'=>Admin::where('id', session('LoggedUser'))->first()];
-        $image = Follow::orderby('id', 'desc')->where('userid', session('LoggedUser'))->with('news')->get();
-        return view('admin.news',$data, compact('image'));
+        $image = Follow::orderby('id', 'desc')
+            ->where('userid', session('LoggedUser'))
+            ->with('news')
+            ->get();
+
+        return view('admin.news', [
+            'image' => $image
+        ]);
     }
 
     function test()
     {
-        $data = ['LoggedUserInfo'=>Admin::where('id', session('LoggedUser'))->first()];
-        return view('admin.test',$data);
+        return view('admin.test');
     }
 }
