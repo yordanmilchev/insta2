@@ -1,0 +1,138 @@
+body{
+    margin: 0;
+    color: white;
+    background-color: black;
+}
+
+body:before{
+    content: '';
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../backgrounds/background3.jpg');
+    background-position: center center;
+    background-repeat: no-repeat ;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    -webkit-filter: blur(14px);
+    filter: blur(14px);
+    animation: background-load-animation 500ms ease-in;
+}
+
+#btn6{
+    margin-top: 20px;
+    float: left;
+    animation: animal-container-animation 300ms;
+}
+
+#btn5{
+    margin-top: 20px;
+    float: right;
+    animation: animal-container-animation 300ms;
+}
+
+#add-order{
+    animation: animal-container-animation 300ms;
+    animation-fill-mode: forwards;
+    transform: scale(0.7);
+}
+
+#fetch3animals{
+    margin-top: 20px;
+    animation: animal-container-animation 300ms;
+}
+
+#animal-container{
+    font-size: 120%;
+}
+
+.hide-me {
+    display: none;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 15px;
+}
+
+.pet {
+    padding: 2rem 2rem;
+    border-radius: 25px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.3);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.pet h2 {
+    font-weight: normal;
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.pet h2 .species {
+    font-size: 1.45rem;
+    color: #999;
+}
+
+.headline-bar {
+    margin: 0;
+    padding: 8px 15px;
+}
+
+.favorite-foods {
+    font-size: 80%;
+    padding: 0;
+    margin: 0;
+}
+
+.favorite-foods li {
+    list-style: none;
+    border-bottom: 1px dotted #999;
+    padding: 5px 15px;
+}
+
+.photo-column {
+    width: 35%;
+    float: left;
+}
+
+.info-column {
+    width: 65%;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-top: 10px;
+    float: left;
+}
+
+@media (max-width: 760px) {
+    .photo-column,
+    .info-column {
+        width: auto;
+        float: none;
+        padding: 0;
+    }
+}
+
+@keyframes animal-container-animation {
+    0%{
+        transform: scale(0.7);
+    }
+    90%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+@keyframes background-load-animation {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+

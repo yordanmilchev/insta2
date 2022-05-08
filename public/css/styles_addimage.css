@@ -1,0 +1,20 @@
+body{
+    margin: 0;
+}
+
+.flexbox-addimage{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.form-control{
+    background-color: transparent;
+    color: white;
+}
+
+@media (max-width: 677px){
+    .flexbox-addimage{
+        flex-direction: column;
+    }
+}

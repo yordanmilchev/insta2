@@ -1,0 +1,318 @@
+:root{
+    --nav-load-time: 300ms;
+    --nav-load-time-layout: 150ms;
+}
+
+body{
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.y img{
+    margin-top: 15px;
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+body:before{
+    content: '';
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../backgrounds/background.jpg');
+    background-position: center center;
+    background-repeat: no-repeat ;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    -webkit-filter: blur(14px);
+    filter: blur(14px);
+    animation: background-load-animation 500ms ease-in;
+}
+
+#btn3{
+    float: right;
+    margin-top: 20px;
+    margin-right:15px;
+}
+
+.col-md-5{
+    font-family: monospace;
+}
+
+.y{
+    animation: top-load var(--nav-load-time) ease-in;
+}
+
+.content{
+    flex-direction: column;
+}
+
+.title{
+    text-align: start;
+    font-size: 500%;
+    margin: 150px;
+    animation: content-load-animation 1000ms ease-in 100ms;
+    animation-fill-mode: forwards;
+    transform: translateY(-20px);
+    opacity: 0;
+}
+
+.title2{
+    text-align: start;
+    font-size: 200%;
+    margin: 135px;
+}
+
+.title3{
+    margin: 100px;
+    text-align: center;
+    font-size: 140%;
+    padding: 2rem 2rem;
+    border-radius: 35px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.title3 img{
+    margin: 20px;
+    width: 120px;
+    height: 120px;
+}
+
+.title4{
+    margin: 150px auto;
+}
+
+.title5{
+    margin-top: 150px;
+}
+
+#h43{
+    font-size: 140%;
+    margin: 20px;
+    text-align: start;
+}
+
+#h44{
+    font-size: 140%;
+    margin: 20px;
+    text-align: end;
+}
+
+#h45{
+    font-size: 140%;
+    margin: 20px;
+    text-align: start;
+}
+
+#h3{
+    margin: 30px;
+}
+
+.title6{
+    margin-top: 150px;
+    text-align: center;
+    font-size: 140%;
+    padding: 2rem 2rem;
+    border-radius: 35px 35px 0 0;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.bar{
+    background: #353b48;
+    display: block;
+    height: 11px;
+    border: 3px solid rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    box-shadow: 0 0 10px #2187e7b3;
+}
+
+.bar span{
+    height: 11px;
+    float: left;
+    background: #3e8f3e;
+}
+
+.c{
+    width: 80%;
+    animation: c 2s;
+}
+
+.laravel{
+    width: 75%;
+    animation: laravel 2s;
+}
+
+.mysql{
+    width: 62%;
+    animation: mysql 2s;
+}
+
+.javascript{
+    width: 65%;
+    animation: javascript 2s;
+}
+
+.html{
+    width: 80%;
+    animation: html 2s;
+}
+
+.ajax{
+    width: 65%;
+    animation: ajax 2s;
+}
+
+.hardware{
+    width: 100%;
+    animation: hardware 2s;
+}
+
+@keyframes c {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 80%;
+    }
+}
+
+@keyframes laravel {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 75%;
+    }
+}
+
+@keyframes mysql {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 62%;
+    }
+}
+
+@keyframes javascript {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 65%;
+    }
+}
+
+@keyframes html {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 80%;
+    }
+}
+
+@keyframes ajax {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 65%;
+    }
+}
+
+@keyframes hardware {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 100%;
+    }
+}
+
+@keyframes top-load {
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+@keyframes content-load-animation {
+    0%{
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes background-load-animation {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@media (max-width: 760px) {
+    .y {
+        display: none;
+    }
+
+    .title{
+        font-size: 300%;
+        margin: 7em;
+    }
+
+    .title2{
+        margin: 8em;
+    }
+
+    .title3{
+        padding: 1rem 1rem;
+        margin-left: 13.4em;
+        font-size: 125%;
+        width: 40%;
+    }
+
+    .title3 img{
+        margin: 2%;
+        width: 100px;
+        height: 100px;
+    }
+
+    .title4{
+        width: 40%;
+    }
+
+    .title5{
+        margin-left: 17em;
+        width: 40%;
+    }
+
+    .title6{
+        padding: 1rem 1rem;
+        margin-left: 12em;
+        width: 40%;
+    }
+
+    .title6 img{
+        width: 180px;
+        height: 180px;
+    }
+}
+

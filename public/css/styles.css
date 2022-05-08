@@ -1,0 +1,289 @@
+body{
+    margin: 0;
+    top: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(3 ,auto);
+    column-gap: 15px;
+    justify-content: center;
+    align-content: center;
+    row-gap: 25px;
+    width: 100%;
+}
+
+.form-control{
+    background-color: transparent;
+    color: white;
+}
+
+.grid img{
+    object-fit: cover;
+    width: 300px;
+    height: 225px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 100ms ease-out;
+}
+
+.grid img:hover {
+    transform: scale(1.11);
+    opacity: 0.85;
+}
+
+.profile-bay{
+    display: grid;
+    justify-content: center;
+    grid-template-areas:
+    "profile_pic name name"
+    "profile_pic followers following";
+}
+
+.pageload__contents{
+    display: none;
+    position: absolute;
+    grid-template-columns: 38% 38% 24%;
+    width: 80%;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 35px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.3);
+    padding: 2rem 2rem;
+    grid-template-areas:
+    "clickedimg clickedimg profile"
+    "clickedimg clickedimg comments";
+}
+
+.clicked-img{
+    grid-area: clickedimg;
+}
+
+.comment-area{
+    grid-area: comments;
+    width: 80%;
+    margin-top: 25%;
+}
+
+.profile-bay-item1{
+    grid-area: profile_pic;
+    pointer-events: none;
+}
+
+.profile-bay-item1 img{
+    object-fit: cover;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+}
+
+.profile-bay-item2{
+    grid-area: name;
+    margin-left: 10px;
+}
+
+.profile-bay-item3{
+    grid-area: followers;
+    margin: 5px;
+}
+
+.profile-bay-item4{
+    grid-area: following;
+    margin: 5px;
+}
+
+.profile-bay-item5{
+    grid-area: profile;
+    margin-bottom: 7rem;
+}
+
+.profile-bay-item5 img{
+    pointer-events: none;
+    grid-area: profile;
+    object-fit: cover;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.follow-area{
+    position: absolute;
+    margin-left: 19%;
+    width: 70%;
+    margin-bottom: 25px;
+    cursor: pointer;
+    border-radius: 15px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.85);
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 2rem 2rem;
+    z-index: 80;
+}
+
+#searchuser{
+    position: absolute;
+    width: 100%;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.85);
+    padding: 2rem 2rem;
+    z-index: 80;
+}
+
+
+#listitem img{
+    object-fit: cover;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 8px;
+}
+
+#listfitem img{
+    object-fit: cover;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 8px;
+}
+
+#lightbox{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+    display: none;
+}
+
+#lightbox.active{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: box 150ms ease-in;
+}
+
+#lightbox img {
+    z-index: 100;
+    max-width: 55%;
+    max-height: 76%;
+    border: 4px solid grey;
+    margin-right: 22%;
+    animation: box 150ms ease-in;
+}
+
+#commentbox{
+    position: fixed;
+    flex-direction: column;
+    top: 17%;
+    right: 13.5%;
+    width: 18%;
+    height: 55%;
+    border-radius: 35px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.85);
+    padding: 2rem 2rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: none;
+}
+
+#commentbox.active{
+    display: flex;
+    animation: box 150ms ease-in;
+}
+
+@keyframes box {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@media (max-width: 1280px) {
+    .grid {
+        grid-template-columns: repeat(2 ,auto);
+    }
+
+    .pageload__contents{
+        width: 100%;
+        grid-template-columns: 42% 42% 24%;
+    }
+
+    #lightbox img{
+        max-width: 77%;
+    }
+
+    #commentbox{
+        right: 1%;
+        width: 22%;
+    }
+}
+
+@media (orientation: portrait) and (max-width: 991px){
+    .grid {
+        grid-template-columns: repeat(1 ,auto);
+    }
+
+    #lightbox.active{
+        align-items: start;
+    }
+
+    #lightbox img{
+        max-width: 90%;
+        max-height: 37%;
+        margin-right: initial;
+        margin-top: 5%;
+    }
+
+    .pageload__contents{
+        width: 100%;
+        grid-template-columns: 100%;
+        box-shadow: initial;
+        background: initial;
+        grid-template-rows: 2fr 1fr 1fr;
+        grid-template-areas:
+        "clickedimg"
+        "profile"
+        "comments";
+    }
+
+    .follow-area{
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    #commentbox{
+        margin-right: 10%;
+        top: 14%;
+        width: 80%;
+    }
+
+    .comment-area{
+        margin-top: initial;
+        margin-left: 10%;
+    }
+
+    .profile-bay-item1 img{
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-bay-item5 img{
+        width: 60px;
+        height: 60px;
+    }
+
+    .profile-bay-item5{
+        margin-top: 20em;
+        margin-left: 10%;
+    }
+}

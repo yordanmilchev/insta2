@@ -1,0 +1,73 @@
+:root{
+    --nav-load-time: 300ms;
+    --nav-load-time-layout: 150ms;
+}
+
+body{
+    margin: 0;
+}
+
+#btn2{
+    animation: top-load var(--nav-load-time) ease-in;
+    margin-top: 20px;
+    margin-right:15px;
+    float: right;
+}
+
+.row{
+    text-align: center;
+}
+
+#btn4{
+    animation: top-load var(--nav-load-time) ease-in;
+    margin-top: 20px;
+    margin-right: 15px;
+    float: right;
+}
+
+.top-item1{
+    animation: top-load var(--nav-load-time) ease-in;
+}
+
+.nav{
+    animation-name: form-load;
+    animation-duration: var(--nav-load-time-layout);
+    animation-timing-function: ease-in;
+    animation-delay: var(--nav-load-time-layout);
+    animation-fill-mode: forwards;
+    transform: scale(0);
+}
+
+.bottom-item1{
+    animation: bottom-load var(--nav-load-time) ease-in;
+}
+
+@keyframes top-load {
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+@keyframes bottom-load {
+    0%{
+        transform: translateY(+100%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+@keyframes form-load {
+    0%{
+        transform: scale(0.7);
+    }
+    90%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
